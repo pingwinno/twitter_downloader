@@ -44,7 +44,7 @@ async def get_links(url: str):
                     results.append({"is_video": True, "url": media_url})
             print(results)
             return {
-                "caption": caption,
+                "captions": caption,
                 "media_list": results
             }
 
