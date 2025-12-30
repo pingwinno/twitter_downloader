@@ -1,4 +1,5 @@
 import asyncio
+import html
 import logging
 import os
 
@@ -31,8 +32,10 @@ async def handle_instagram_link(message: Message):
                     reply_to_message_id=message.message_id
                 )
                 if media_album["captions"]:
+                    caption_text = media_album.get("captions") or ""
+                    safe_caption = html.escape(caption_text)
                     text = (
-                        f"<blockquote expandable>\n{media_album["captions"]}\n</blockquote>\n"
+                        f"<blockquote expandable>\n{safe_caption}\n</blockquote>\n"
                     )
                     await message.answer(
                         text=text,
